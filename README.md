@@ -2,7 +2,7 @@
 
 Automação de Api em JavaScript
 
-
+* Necessita do Node.js instalado !
 
 ### Instalando o dependencias ###
 Dentro do diretório 'wirecard_test' execute o comando:
