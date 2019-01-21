@@ -1,10 +1,12 @@
 'use strict';
 
 
-var request = require('supertest'),
-  expect = require('chai').expect,
+var Joi = require('joi'),
+request = require('supertest'),
+expect = require('chai').expect,
+joiAssert = require('joi-assert');
 
-token = "Basic WUVIOU5BOEhaTTA3QkZRNVBKUVA1RU9WWVVRRlJTSlU6RU1WRElYUU4ySDdTWFdFUE1OS1MyRkZWQjRNR1k2OE9URzNJMlBFTw=="; 
+let token = "Basic WUVIOU5BOEhaTTA3QkZRNVBKUVA1RU9WWVVRRlJTSlU6RU1WRElYUU4ySDdTWFdFUE1OS1MyRkZWQjRNR1k2OE9URzNJMlBFTw=="; 
 let id_order = "";
 let id_pay = "";
 
@@ -14,6 +16,10 @@ const {
     BodyPayment, 
     BodyPaymentWithOutMtd,
   } = require('../bodys/bodys');
+
+  const {
+    shemaCustomersFull,
+  } = require('../schemas/schema_wirecard_test');
 
 
 const URL = 'https://sandbox.moip.com.br';
@@ -32,6 +38,7 @@ describe('Wirecard Testing', function () {
         .expect('Content-Type', /json/)
         .end(function (err, res) {
           expect(res.status).to.be.eql(200);
+          joiAssert(res.body, shemaCustomersFull);
           done(err);
         });
     });
