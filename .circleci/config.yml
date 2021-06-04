@@ -1,12 +1,20 @@
-# This config is equivalent to both the '.circleci/extended/orb-free.yml' and the base '.circleci/config.yml'
 version: 2.1
-
-orbs:
-  node: circleci/node@4.1
-
-workflows:
-  sample:
-    jobs:
-      - node/test:
-          version: '15.1'
-           - npm install 
+jobs:
+  build:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:10.16.3
+    steps:
+      - checkout
+      - run:
+          name: update-npm
+          command: "sudo npm install -g npm@5"
+      - run:
+          name: install-packages
+          command: npm install
+      - run:
+          name: pasta
+          command: cd test
+      - run:
+          name: test
+          command: mocha wirecard_test.js
