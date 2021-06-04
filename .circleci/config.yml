@@ -8,34 +8,14 @@ jobs:
       - checkout
       - run:
           name: update-npm
-          command: "sudo npm install -g npm@5"
+          command: "sudo npm install -g npm"
       - run:
           name: install-packages
-          command: npm install --safe
+          command: "sudo npm install --safe"
       - run:
-          name: install supertest
-          command: npm install supertest --save-dev
+          name: find teste
+          command: "cd test"
       - run:
-          name: install mocha
-          command: npm install mocha --save-dev
-      - run:
-          name: install chai
-          command: npm install chai --save-dev
-      - run:
-          name: install joi           
-          command: npm install joi --save-dev
-      - run:
-          name: install jot-assert
-          command: npm install joi-assert --save-dev
-      - run:
-          name: install mochawesome
-          command: npm install mochawesome --save-dev
-      - run:
-          name: install faker
-          command: npm install faker --save-dev
-      - run:
-          name: pasta
-          command: cd test
-      - run:
-          name: test
-          command: mocha wirecard_test.js
+          name: run test
+          command: "mocha wirecard_test.js"
+     
