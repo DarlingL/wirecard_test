@@ -11,7 +11,7 @@ jobs:
           command: "sudo npm install -g npm"
       - run:
           name: install-packages
-          command: "sudo npm install --safe"
+          command: "sudo npm install -g"
       - run:
           name: find teste
           command: "cd test"
